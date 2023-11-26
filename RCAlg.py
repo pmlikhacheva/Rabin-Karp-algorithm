@@ -3,6 +3,8 @@ from hash_func import calc_hash, next_hash
 
 def Rabin_Carp_Alg(DNA, target):
     """
+    finds indexes of subsequences in read data
+
     param DNA: initial sequence
     param target: substring
     return: list of indexes where the subsequence is
@@ -37,4 +39,5 @@ def Rabin_Carp_Alg(DNA, target):
 
         subseq = DNA[i + 1:i + len_target + 1]
         subseq_hash = next_hash(subseq, DNA[i], subseq_hash)
+
     return ', '.join(list(map(str, answer)))
