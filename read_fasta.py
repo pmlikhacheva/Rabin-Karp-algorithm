@@ -1,24 +1,14 @@
-def read_fasta(file_path):
-    """
-    :param file_path: path to fasta file with data
-    :return: XZ
-    """
+def read_fasta(path):
+    with open (path) as f:
+        sq_name = ''
+        sq = ''
+        lines = f.readlines()
+        sq_name = lines[0]
+        for line in lines[1:]:
+            sq += line
+        l = []
+        l.append(sq_name)
+        l.append(sq)
+        return l
 
-    sequences = {}
-    with open(file_path) as f:
-        seq_name = None
-        seq = ''
-        for line in f:
-            line = line.strip()
-            if line.startswith('>'):
-                if seq_name is not None:
-                    sequences[seq_name] = seq
-                seq_name = line[1:]
-                seq = ''
-            else:
-                seq += line
-        if seq_name is not None:
-            sequences[seq_name] = seq
-    return sequences
-
-print(read_fasta('/home/qrewetka/Загрузки/example.fa'))
+#print(read_fasta('/home/qrewetka/Rabin-Karp-algorithm/example.fa'))
