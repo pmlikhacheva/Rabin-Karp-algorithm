@@ -1,7 +1,8 @@
 
 p = 20
 
-alphabet = {"A": 0, "C": 1, "G": 2, "T": 3}
+alphabet = {"A": 1, "C": 2, "G": 3, "T": 4}
+
 
 def calc_hash(s):
     res = alphabet[s[0]]
@@ -9,9 +10,11 @@ def calc_hash(s):
         res = res * p + alphabet[s[i]]
     return res
 
-def next_hash(S, h):
-    res = (h - alphabet[S[0]]*p**(len(S)-2))*p + alphabet[S[-1]]
+
+def next_hash(S, prev, h):
+    res = (h - alphabet[prev]*p**(len(S)-1))*p + alphabet[S[-1]]
     return res
+
 
 def Rabin_Carp_Alg(DNA, target):
     """
@@ -34,11 +37,10 @@ def Rabin_Carp_Alg(DNA, target):
 
     answer = []
     target_hash = calc_hash(target)
+    subseq = DNA[:len_target]   # part of DNA. it is moving in process from the begining to the end of sequense
+    subseq_hash = calc_hash(subseq)  # hash of the part of DNA
 
     for i in range(len_DNA - len_target + 1):
-        subseq = DNA[i:i + len_target]  # part of DNA. it is moving in process from the begining to the end of sequense
-        subseq_hash = calc_hash(subseq)  # hash of the part of DNA
-
         if subseq_hash == target_hash:
             equal = True
             for j in range(len_target):
@@ -48,6 +50,8 @@ def Rabin_Carp_Alg(DNA, target):
             if equal:
                 answer.append(i)
 
+        subseq = DNA[i + 1:i + len_target + 1]
+        subseq_hash = next_hash(subseq, DNA[i], subseq_hash)
     return answer
 
 
