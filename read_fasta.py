@@ -20,3 +20,5 @@ def read_fasta(file_path):
         if seq_name is not None:
             sequences[seq_name] = seq
     return sequences
+
+print(read_fasta('/home/qrewetka/Загрузки/example.fa'))
