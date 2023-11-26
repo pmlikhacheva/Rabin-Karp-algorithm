@@ -5,7 +5,7 @@ alphabet = {"A": 0, "C": 1, "G": 2, "T": 3}
 
 
 def hashPoly(S):  # проблема с хэш-функцией
-    
+
     h = sum(alphabet[S[c]]*(p**c) for c in range(len(S)))
     return h
 
@@ -25,6 +25,9 @@ def Rabin_Carp_Alg(DNA, target):
     
     if not isinstance(DNA, str) or not isinstance(target, str):
         raise TypeError("Wrong data type")
+
+    if len(set(DNA)) > 4:  # if there are some symbols except ATGC
+        raise ValueError("Wrong symbols in sequence")
 
     answer = []
     target_hash = hashPoly(target)
