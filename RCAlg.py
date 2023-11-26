@@ -1,19 +1,4 @@
-
-p = 20
-
-alphabet = {"A": 1, "C": 2, "G": 3, "T": 4}
-
-
-def calc_hash(s):
-    res = alphabet[s[0]]
-    for i in range(1, len(s)):
-        res = res * p + alphabet[s[i]]
-    return res
-
-
-def next_hash(S, prev, h):
-    res = (h - alphabet[prev]*p**(len(S)-1))*p + alphabet[S[-1]]
-    return res
+from hash_func import calc_hash, next_hash
 
 
 def Rabin_Carp_Alg(DNA, target):
