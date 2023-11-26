@@ -37,9 +37,4 @@ def Rabin_Carp_Alg(DNA, target):
 
         subseq = DNA[i + 1:i + len_target + 1]
         subseq_hash = next_hash(subseq, DNA[i], subseq_hash)
-    return answer
-
-
-DNA = 'ACGTAAACGT'
-target = 'CGT'
-print(Rabin_Carp_Alg(DNA, target))
+    return ', '.join(list(map(str, answer)))
