@@ -17,35 +17,29 @@ def Rabin_Carp_Alg(DNA, target):
     return: list of indexes where the subsequence is
     """
 
-    len_target = len(target)
+    len_target = len(target)  # calculate length to simplify
     len_DNA = len(DNA)
 
     if len_target > len_DNA:
-        raise Exception('Wrong target sequence')
+        raise Exception('Wrong target sequence')  # some exceptions
     
     if not isinstance(DNA, str) or not isinstance(target, str):
         raise TypeError("Wrong data type")
 
     answer = []
-    target_hash = hashPoly(target)  # is constant
+    target_hash = hashPoly(target)
 
     for i in range(len_DNA - len_target + 1):
-        subseq = DNA[i:i + len_target]
-        subseq_hash = hashPoly(subseq)
-
-        print(i)
-        print(subseq_hash)
-        print(target_hash)
-        print(DNA[i:i + len_target])
-        print(target)
+        subseq = DNA[i:i + len_target]  # part of DNA. it is moving in process from the begining to the end of sequense
+        subseq_hash = hashPoly(subseq)  # hash of the part of DNA
 
         if subseq_hash == target_hash:
             equal = True
-            for j in range(len_target):
+            for j in range(len_target):  # begin comparing symbol by symbol
                 if subseq[j] != target[j]:
                     equal = False
                     break
-            if equal:
+            if equal:  # add to answer only if hashes are equal and subseqs are the same
                 answer.append(i)
 
     return answer
