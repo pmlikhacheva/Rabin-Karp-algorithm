@@ -4,16 +4,12 @@ p = 20
 alphabet = {"A": 0, "C": 1, "G": 2, "T": 3}
 
 
-def calc_hash(s): 
-    res = alphabet[s[0]]
-    for i in range(1, len(s)):
-        res = res * p + alphabet[s[i]]
-    return res
-
-def next_hash(S, h):
-    res = (h - alphabet[S[0]]*p**(len(S)-2))*p + alphabet[S[-1]]
-    return res
+def hashPoly(S):  # проблема с хэш-функцией
     
+    h = sum(alphabet[S[c]]*(p**c) for c in range(len(S)))
+    return h
+
+
 def Rabin_Carp_Alg(DNA, target):
     """
     param DNA: initial sequence
