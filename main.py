@@ -10,7 +10,14 @@ def main():
     targ = input()
 
     name, data = read_fasta(path)
-    results = Rabin_Carp_Alg(data, targ)
+    try:
+        results = Rabin_Carp_Alg(data, targ)
+    except ValueError:
+        print("Your date contains mistakes")
+        return
+    except TypeError:
+        print("Incorrect data format ")
+        return
 
     output = open("output.txt", "w")
     if results:
