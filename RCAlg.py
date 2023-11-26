@@ -3,13 +3,6 @@ p = 20
 
 alphabet = {"A": 0, "C": 1, "G": 2, "T": 3}
 
-
-def hashPoly(S):  # проблема с хэш-функцией
-
-    h = sum(alphabet[S[c]]*(p**c) for c in range(len(S)))
-    return h
-
-
 def calc_hash(s):
     res = alphabet[s[0]]
     for i in range(1, len(s)):
