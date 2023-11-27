@@ -1,5 +1,7 @@
 BASE = 20
 
+MODULE = 13137
+
 alphabet = {
     "A": 1, "C": 2, "G": 3, "T": 4
 }
@@ -16,7 +18,7 @@ def calc_hash(s):
     for i in range(1, len(s)):
         res = res * BASE + alphabet[s[i]]
 
-    return res
+    return res % MODULE
 
 
 def next_hash(s, prev, h):
@@ -30,4 +32,4 @@ def next_hash(s, prev, h):
 
     res = (h - alphabet[prev]*BASE**(len(s)-1))*BASE + alphabet[s[-1]]
 
-    return res
+    return res % MODULE

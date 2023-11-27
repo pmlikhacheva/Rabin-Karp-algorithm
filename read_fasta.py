@@ -9,5 +9,5 @@ def read_fasta(path):
     with open(path) as f:
         lines = f.readlines()
         sq_name = lines[0]
-        sq = ''.join(lines[1:])
+        sq = ''.join(''.join(lines[1:]).split())
         return sq_name, sq
