@@ -19,7 +19,8 @@ def Rabin_Carp_Alg(DNA, target):
     if not isinstance(DNA, str) or not isinstance(target, str):
         raise TypeError("Wrong data type")
 
-    if len(set(DNA)) > 4:  # if there are some symbols except ATGC
+    if not set(DNA).issubset({"A", "T", "G", "C"}) or not set(target).issubset({"A", "T", "G", "C"}):
+        # if there are some symbols except ATGC
         raise ValueError("Wrong symbols in sequence")
 
     answer = []
